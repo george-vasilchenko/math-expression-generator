@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meg.Ui", "src\Meg.Ui\Meg.Ui.csproj", "{BB875597-34F0-4689-9A4F-0789197C6DF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{611936FD-413F-4148-9240-ED0D0DD3130F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB875597-34F0-4689-9A4F-0789197C6DF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB875597-34F0-4689-9A4F-0789197C6DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB875597-34F0-4689-9A4F-0789197C6DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB875597-34F0-4689-9A4F-0789197C6DF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB875597-34F0-4689-9A4F-0789197C6DF5} = {611936FD-413F-4148-9240-ED0D0DD3130F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74302200-CED1-47FF-9EAB-A189096D6CA9}
+	EndGlobalSection
+EndGlobal
