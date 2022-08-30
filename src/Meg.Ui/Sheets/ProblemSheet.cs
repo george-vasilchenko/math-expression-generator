@@ -1,11 +1,11 @@
-﻿using System.Text;
-using Meg.Ui.Problems;
+﻿using Meg.Ui.Problems;
+using System.Text;
 
 namespace Meg.Ui.Sheets
 {
     public abstract class ProblemSheet : IProblemSheet
     {
-        protected abstract IEnumerable<Problem> Problems { get; }
+        public abstract IEnumerable<Problem> Problems { get; }
 
         public string GetAnswersSheet()
         {

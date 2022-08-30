@@ -8,7 +8,7 @@ namespace Meg.Ui.Sheets
         public MultiplicationProblemSheet(MultiplicationProblemSheetConfiguration configuration)
             => Problems = CreateProblems(configuration).ToList();
 
-        protected override List<Problem> Problems { get; }
+        public override List<Problem> Problems { get; }
 
         private static IEnumerable<Problem> CreateProblems(MultiplicationProblemSheetConfiguration configuration)
         {

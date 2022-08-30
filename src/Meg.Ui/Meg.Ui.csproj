@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -19,6 +19,10 @@
     <None Include="Obsolete\OperationExpression.cs" />
     <None Include="Obsolete\SubtractionExpression.cs" />
     <None Include="Obsolete\SumExpression.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WpfMath" Version="0.11.0" />
   </ItemGroup>
 
 </Project>
