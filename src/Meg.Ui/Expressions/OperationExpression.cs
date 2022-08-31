@@ -18,15 +18,5 @@
         public Expression<TInput>[] Expressions { get; }
 
         public OperationType OperationType { get; }
-
-        public string GetOperationString() => OperationType switch
-        {
-            OperationType.Sum => "+",
-            OperationType.Subtraction => "-",
-            OperationType.Multiplication => "*",
-            OperationType.Division => ":",
-            OperationType.Equality => "=",
-            _ => throw new ArgumentException("Unexpected operation case."),
-        };
     }
 }

@@ -1,4 +1,4 @@
-﻿using Meg.Ui.Presentations;
+﻿using Meg.Ui.Presentations.Latex;
 using Meg.Ui.Sheets;
 
 namespace Meg.Ui
@@ -7,13 +7,16 @@ namespace Meg.Ui
     {
         private static readonly string OutputFilePath = @"C:\Users\GeorgeVasilchenko\OneDrive - Source Line\Desktop\formula.png";
 
-        private static void Main(string[] args)
+        private static void Main()
         {
-            var sheet = new DivisionProblemSheet(new DivisionProblemSheetConfiguration(30, 2, 1, 10));
-            var sheet2 = new MultiplicationProblemSheet(new MultiplicationProblemSheetConfiguration(20, 3, 1, 10));
-            var parsedSheet = SheetToLatexParser.ToLatex(sheet2.Problems);
+            var expressionFormatVisitor = new LatexExpressionFormatVisitor();
+            var sheetConfiguration = new SumProblemSheetConfiguration(30, 2, 1, 10);
+            var sheet = new SumProblemSheet(expressionFormatVisitor, sheetConfiguration);
+            var problems = sheet.CreateProblems();
+            var latex = SheetToLatexParser.ToLatex(problems);
+
             var renderer = new LatexFileRenderer(OutputFilePath);
-            renderer.WriteToFile(parsedSheet);
+            renderer.WriteToFile(latex);
         }
     }
 }

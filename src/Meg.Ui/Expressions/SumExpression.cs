@@ -1,15 +1,19 @@
-﻿using Meg.Ui.Helpers;
+﻿using Meg.Ui.Presentations;
 
 namespace Meg.Ui.Expressions
 {
     public class SumExpression : OperationExpression<double, double>
     {
-        public SumExpression(params Expression<double>[] expressions) : base(OperationType.Sum, expressions)
+        private readonly IExpressionFormatVisitor expressionFormatVisitor;
+
+        public SumExpression(IExpressionFormatVisitor expressionFormatVisitor, params Expression<double>[] expressions)
+            : base(OperationType.Sum, expressions)
         {
+            this.expressionFormatVisitor = expressionFormatVisitor;
         }
 
-        public override Func<double> ToFunc() => () => Expressions.Sum(e => e.ToFunc().Invoke());
+        public override Func<double> ToResultFunc() => () => Expressions.Sum(e => e.ToResultFunc().Invoke());
 
-        public override string ToString() => OperationExpressionHelpers.ExpressionsAsDoublesToString(Expressions, GetOperationString());
+        public override string ToFormat() => expressionFormatVisitor.Visit(this);
     }
 }

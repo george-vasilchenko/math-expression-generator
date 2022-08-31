@@ -1,6 +1,6 @@
 ﻿namespace Meg.Ui.Expressions
 {
-    public sealed class EqualityExpression : OperationExpression<double, bool>, IEquatable<EqualityExpression>
+    public sealed class EqualityExpression : OperationExpression<double, bool>
     {
         public EqualityExpression(Expression<double> lhs, Expression<double> rhs)
             : base(OperationType.Equality, lhs, rhs)
@@ -11,10 +11,8 @@
 
         public Expression<double> Rhs => Expressions[1];
 
-        public bool Equals(EqualityExpression? other) => ToString().Equals(other!.ToString());
+        public override Func<bool> ToResultFunc() => () => Lhs.ToResultFunc().Invoke() == Rhs.ToResultFunc().Invoke();
 
-        public override Func<bool> ToFunc() => () => Lhs.ToFunc().Invoke() == Rhs.ToFunc().Invoke();
-
-        public override string ToString() => $"{Lhs.ToString()} = {Rhs.ToString()}";
+        public override string ToFormat() => $"{Lhs.ToFormat()} = {Rhs.ToFormat()}";
     }
 }

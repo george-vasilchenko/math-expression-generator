@@ -1,16 +1,22 @@
 ﻿using Meg.Ui.Expressions;
+using Meg.Ui.Presentations;
 using Meg.Ui.Problems;
+using Meg.Ui.Sheets.Common;
 
 namespace Meg.Ui.Sheets
 {
     public class SubtractionProblemSheet : ProblemSheet
     {
-        public SubtractionProblemSheet(SumProblemSheetConfiguration configuration)
-            => Problems = CreateProblems(configuration).ToList();
+        private readonly IExpressionFormatVisitor expressionFormatVisitor;
+        private readonly SumProblemSheetConfiguration configuration;
 
-        public override List<Problem> Problems { get; }
+        public SubtractionProblemSheet(IExpressionFormatVisitor expressionFormatVisitor, SumProblemSheetConfiguration configuration)
+        {
+            this.expressionFormatVisitor = expressionFormatVisitor;
+            this.configuration = configuration;
+        }
 
-        private static IEnumerable<Problem> CreateProblems(SumProblemSheetConfiguration configuration)
+        public override IEnumerable<Problem> CreateProblems()
         {
             var problems = new List<Problem>();
 
@@ -18,8 +24,8 @@ namespace Meg.Ui.Sheets
             {
                 var members = GetMembers(configuration);
 
-                var lhs = new SubtractionExpression(members.ToArray());
-                var rhs = new ConstantExpression(lhs.ToFunc().Invoke());
+                var lhs = new SubtractionExpression(expressionFormatVisitor, members.ToArray());
+                var rhs = new ConstantExpression(lhs.ToResultFunc().Invoke());
                 var eqExpr = new EqualityExpression(lhs, rhs);
 
                 problems.Add(new Problem(i + 1, eqExpr));

@@ -1,16 +1,22 @@
 ﻿using Meg.Ui.Expressions;
+using Meg.Ui.Presentations;
 using Meg.Ui.Problems;
+using Meg.Ui.Sheets.Common;
 
 namespace Meg.Ui.Sheets
 {
     public class DivisionProblemSheet : ProblemSheet
     {
-        public DivisionProblemSheet(DivisionProblemSheetConfiguration configuration)
-            => Problems = CreateProblems(configuration).ToList();
+        private readonly IExpressionFormatVisitor expressionFormatVisitor;
+        private readonly DivisionProblemSheetConfiguration configuration;
 
-        public override List<Problem> Problems { get; }
+        public DivisionProblemSheet(IExpressionFormatVisitor expressionFormatVisitor, DivisionProblemSheetConfiguration configuration)
+        {
+            this.expressionFormatVisitor = expressionFormatVisitor;
+            this.configuration = configuration;
+        }
 
-        private static IEnumerable<Problem> CreateProblems(DivisionProblemSheetConfiguration configuration)
+        public override IEnumerable<Problem> CreateProblems()
         {
             var problems = new List<Problem>();
 
@@ -18,8 +24,8 @@ namespace Meg.Ui.Sheets
             {
                 var members = GetMembers(configuration);
 
-                var lhs = new DivisionExpression(members.ToArray());
-                var rhs = new ConstantExpression(lhs.ToFunc().Invoke());
+                var lhs = new DivisionExpression(expressionFormatVisitor, members.ToArray());
+                var rhs = new ConstantExpression(lhs.ToResultFunc().Invoke());
                 var eqExpr = new EqualityExpression(lhs, rhs);
 
                 problems.Add(new Problem(i + 1, eqExpr));

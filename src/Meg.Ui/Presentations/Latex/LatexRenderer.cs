@@ -1,11 +1,11 @@
 ﻿using System.Windows.Media.Imaging;
 using WpfMath;
 
-namespace Meg.Ui.Presentations
+namespace Meg.Ui.Presentations.Latex
 {
     public class LatexFileRenderer
     {
-        private const string Font = "Arial";
+        private const string Font = "Consolas";
         private const double FontSize = 20.0;
         private const double ImageDpi = 192.0;
 

@@ -1,27 +1,30 @@
-﻿using Meg.Ui.Helpers;
+﻿using Meg.Ui.Presentations;
 
 namespace Meg.Ui.Expressions
 {
     public class SubtractionExpression : OperationExpression<double, double>
     {
-        public SubtractionExpression(params Expression<double>[] expressions) : base(OperationType.Subtraction, expressions)
+        private readonly IExpressionFormatVisitor expressionFormatVisitor;
+
+        public SubtractionExpression(IExpressionFormatVisitor expressionFormatVisitor, params Expression<double>[] expressions) : base(OperationType.Subtraction, expressions)
         {
+            this.expressionFormatVisitor = expressionFormatVisitor;
         }
 
-        public override Func<double> ToFunc() => () =>
+        public override Func<double> ToResultFunc() => () =>
         {
-            var result = Expressions[0].ToFunc().Invoke();
+            var result = Expressions[0].ToResultFunc().Invoke();
 
             for (var i = 1; i < Expressions.Length; i++)
             {
                 var exp = Expressions[i];
-                var value = exp.ToFunc().Invoke();
+                var value = exp.ToResultFunc().Invoke();
                 result -= value;
             }
 
             return result;
         };
 
-        public override string ToString() => OperationExpressionHelpers.ExpressionsAsDoublesToString(Expressions, GetOperationString());
+        public override string ToFormat() => expressionFormatVisitor.Visit(this);
     }
 }

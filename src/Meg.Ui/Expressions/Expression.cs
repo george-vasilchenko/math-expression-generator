@@ -3,8 +3,8 @@
     public abstract class Expression<TResult>
         where TResult : struct
     {
-        public abstract Func<TResult> ToFunc();
+        public abstract Func<TResult> ToResultFunc();
 
-        public new abstract string ToString();
+        public abstract string ToFormat();
     }
 }

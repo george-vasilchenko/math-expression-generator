@@ -6,8 +6,8 @@
 
         public double Constant { get; }
 
-        public override Func<double> ToFunc() => () => Constant;
+        public override Func<double> ToResultFunc() => () => Constant;
 
-        public override string ToString() => Constant.ToString();
+        public override string ToFormat() => Constant.ToString();
     }
 }

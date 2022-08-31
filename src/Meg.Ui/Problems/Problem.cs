@@ -12,8 +12,8 @@ namespace Meg.Ui.Problems
             }
 
             Id = id;
-            Question = expression.Lhs.ToString();
-            Answer = expression.Rhs.ToString();
+            Question = expression.Lhs.ToFormat();
+            Answer = expression.Rhs.ToFormat();
         }
 
         public string Answer { get; }

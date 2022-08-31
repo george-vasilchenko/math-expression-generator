@@ -1,7 +1,7 @@
 ﻿using Meg.Ui.Problems;
 using System.Text;
 
-namespace Meg.Ui.Sheets
+namespace Meg.Ui.Presentations.Latex
 {
     public static class SheetToLatexParser
     {

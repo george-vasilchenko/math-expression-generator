@@ -19,7 +19,6 @@
         }
 
         public int ExpressionMemberCount { get; }
-
         public int ProblemCount { get; }
     }
 }
