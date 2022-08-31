@@ -1,8 +1,6 @@
 ﻿namespace Meg.Ui.Expressions
 {
     public abstract class OperationExpression<TInput, TResult> : Expression<TResult>
-        where TInput : struct
-        where TResult : struct
     {
         protected OperationExpression(OperationType operationType, params Expression<TInput>[] expressions)
         {

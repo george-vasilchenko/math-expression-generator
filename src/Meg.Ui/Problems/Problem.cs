@@ -4,7 +4,7 @@ namespace Meg.Ui.Problems
 {
     public class Problem
     {
-        public Problem(int id, EqualityExpression expression)
+        public Problem(int id, Equality expression)
         {
             if (expression is null)
             {

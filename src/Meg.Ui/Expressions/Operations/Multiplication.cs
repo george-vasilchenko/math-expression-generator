@@ -2,11 +2,11 @@
 
 namespace Meg.Ui.Expressions
 {
-    public class MultiplicationExpression : OperationExpression<double, double>
+    public class Multiplication : OperationExpression<double, double>
     {
         private readonly IExpressionFormatVisitor expressionFormatVisitor;
 
-        public MultiplicationExpression(IExpressionFormatVisitor expressionFormatVisitor, params Expression<double>[] expressions) : base(OperationType.Multiplication, expressions)
+        public Multiplication(IExpressionFormatVisitor expressionFormatVisitor, params Expression<double>[] expressions) : base(OperationType.Multiplication, expressions)
         {
             this.expressionFormatVisitor = expressionFormatVisitor;
         }
