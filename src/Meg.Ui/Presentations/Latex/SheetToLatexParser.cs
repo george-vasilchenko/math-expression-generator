@@ -3,9 +3,9 @@ using System.Text;
 
 namespace Meg.Ui.Presentations.Latex
 {
-    public static class SheetToLatexParser
+    public static class ProblemToLatexParser
     {
-        public static string ToLatex(IEnumerable<Problem> problems)
+        public static string ToLatex(params Problem[] problems)
         {
             if (problems is null)
             {

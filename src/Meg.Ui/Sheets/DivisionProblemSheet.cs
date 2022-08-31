@@ -24,7 +24,7 @@ namespace Meg.Ui.Sheets
             {
                 var members = GetMembers(configuration);
 
-                var lhs = new DivisionExpression(expressionFormatVisitor, members.ToArray());
+                var lhs = DivisionExpression.NewInline(expressionFormatVisitor, members.ToArray());
                 var rhs = new ConstantExpression(lhs.ToResultFunc().Invoke());
                 var eqExpr = new EqualityExpression(lhs, rhs);
 
