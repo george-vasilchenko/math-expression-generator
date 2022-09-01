@@ -1,4 +1,5 @@
 ﻿using Meg.Ui.Expressions;
+using Meg.Ui.Expressions.Functions;
 using System.Text;
 
 namespace Meg.Ui.Presentations.Latex
@@ -8,7 +9,7 @@ namespace Meg.Ui.Presentations.Latex
     /// </summary>
     public class LatexExpressionFormatVisitor : IExpressionFormatVisitor
     {
-        public string Visit<TResult>(Expression<TResult> expression)
+        public string Visit<TResult>(ComputationExpression<TResult> expression)
         {
             switch (expression)
             {
@@ -24,6 +25,9 @@ namespace Meg.Ui.Presentations.Latex
                 case Division division:
                     return HandleDivision(division);
 
+                case Power power:
+                    return HandlePower(power);
+
                 default:
                     throw new InvalidOperationException("Unsupported type was provided");
             }
@@ -36,7 +40,6 @@ namespace Meg.Ui.Presentations.Latex
                 OperationType.Subtraction => "-",
                 OperationType.Multiplication => "\\times",
                 OperationType.Division => ":",
-                OperationType.Equality => "=",
                 _ => throw new ArgumentException("Unexpected operation case."),
             };
 
@@ -121,6 +124,19 @@ namespace Meg.Ui.Presentations.Latex
             return result.ToString();
         }
 
+        private static string HandlePower(Power expression)
+        {
+            if (expression is null)
+            {
+                throw new ArgumentNullException(nameof(expression));
+            }
+
+            var argumentPart = expression.ArgumentExpression.ToFormat();
+            var powerPart = expression.PowerExpression.ToFormat();
+
+            return $"({argumentPart})^{{{powerPart}}}";
+        }
+
         private static string HandleSubtraction(Subtraction expression)
         {
             if (expression is null)
@@ -193,7 +209,7 @@ namespace Meg.Ui.Presentations.Latex
             return result.ToString();
         }
 
-        private static string TryWrapExpressionInParenthesis(Expression<double> expression)
-                                                                => expression.ToResultFunc().Invoke() < 0 ? $"({expression.ToFormat()})" : expression.ToFormat();
+        private static string TryWrapExpressionInParenthesis(ComputationExpression<double> expression)
+            => expression.GetComputationFunc().Invoke() < 0 ? $"({expression.ToFormat()})" : expression.ToFormat();
     }
 }

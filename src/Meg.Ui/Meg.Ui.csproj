@@ -8,20 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Obsolete\BinaryOperationExpression.cs" />
-    <Compile Remove="Obsolete\OperationExpression.cs" />
-    <Compile Remove="Obsolete\SubtractionExpression.cs" />
-    <Compile Remove="Obsolete\SumExpression.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Obsolete\BinaryOperationExpression.cs" />
-    <None Include="Obsolete\OperationExpression.cs" />
-    <None Include="Obsolete\SubtractionExpression.cs" />
-    <None Include="Obsolete\SumExpression.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="WpfMath" Version="0.11.0" />
   </ItemGroup>
 

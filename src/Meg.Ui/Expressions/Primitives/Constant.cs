@@ -1,6 +1,6 @@
 ﻿namespace Meg.Ui.Expressions.Primitives
 {
-    public class Constant : Expression<double>
+    public class Constant : NumericExpression
     {
         private Constant(double value, string unknown)
         {
@@ -26,7 +26,7 @@
         public string? Unknown { get; }
         public double Value { get; }
 
-        public static Constant FromExpression(Expression<double> expression) => new(expression.ToResultFunc().Invoke());
+        public static Constant FromExpression(ComputationExpression<double> expression) => new(expression.GetComputationFunc().Invoke());
 
         public static Constant New(double value) => new(value);
 
@@ -34,6 +34,6 @@
 
         public override string ToFormat() => IsUnknown ? Unknown! : Value.ToString();
 
-        public override Func<double> ToResultFunc() => () => Value;
+        public override Func<double> GetComputationFunc() => () => Value;
     }
 }

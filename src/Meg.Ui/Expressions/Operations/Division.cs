@@ -6,7 +6,7 @@ namespace Meg.Ui.Expressions
     {
         private readonly IExpressionFormatVisitor expressionFormatVisitor;
 
-        private Division(IExpressionFormatVisitor expressionFormatVisitor, bool hasParenthesis, params Expression<double>[] expressions)
+        private Division(IExpressionFormatVisitor expressionFormatVisitor, bool hasParenthesis, params NumericExpression[] expressions)
             : base(OperationType.Division, expressions)
         {
             if (expressions is null)
@@ -19,7 +19,7 @@ namespace Meg.Ui.Expressions
             IsFraction = false;
         }
 
-        private Division(IExpressionFormatVisitor expressionFormatVisitor, bool hasParenthesis, Expression<double> numerator, Expression<double> denominator)
+        private Division(IExpressionFormatVisitor expressionFormatVisitor, bool hasParenthesis, NumericExpression numerator, NumericExpression denominator)
             : base(OperationType.Division, numerator, denominator)
         {
             if (numerator is null)
@@ -40,40 +40,40 @@ namespace Meg.Ui.Expressions
         public bool HasParenthesis { get; } = false;
         public bool IsFraction { get; } = false;
 
-        public static Division NewFraction(IExpressionFormatVisitor expressionFormatVisitor, Expression<double> numerator, Expression<double> denominator)
+        public static Division NewFraction(IExpressionFormatVisitor expressionFormatVisitor, NumericExpression numerator, NumericExpression denominator)
         {
             return new Division(expressionFormatVisitor, false, numerator, denominator);
         }
 
-        public static Division NewFractionWithParenthesis(IExpressionFormatVisitor expressionFormatVisitor, Expression<double> numerator, Expression<double> denominator)
+        public static Division NewFractionWithParenthesis(IExpressionFormatVisitor expressionFormatVisitor, NumericExpression numerator, NumericExpression denominator)
         {
             return new Division(expressionFormatVisitor, true, numerator, denominator);
         }
 
-        public static Division NewInline(IExpressionFormatVisitor expressionFormatVisitor, params Expression<double>[] expressions)
+        public static Division NewInline(IExpressionFormatVisitor expressionFormatVisitor, params NumericExpression[] expressions)
         {
             return new Division(expressionFormatVisitor, false, expressions);
         }
 
-        public static Division NewInlineWithParenthesis(IExpressionFormatVisitor expressionFormatVisitor, params Expression<double>[] expressions)
+        public static Division NewInlineWithParenthesis(IExpressionFormatVisitor expressionFormatVisitor, params NumericExpression[] expressions)
         {
             return new Division(expressionFormatVisitor, true, expressions);
         }
 
-        public override string ToFormat() => expressionFormatVisitor.Visit(this);
-
-        public override Func<double> ToResultFunc() => () =>
+        public override Func<double> GetComputationFunc() => () =>
                 {
-                    var result = Expressions[0].ToResultFunc().Invoke();
+                    var result = Expressions[0].GetComputationFunc().Invoke();
 
                     for (var i = 1; i < Expressions.Length; i++)
                     {
                         var exp = Expressions[i];
-                        var value = exp.ToResultFunc().Invoke();
+                        var value = exp.GetComputationFunc().Invoke();
                         result /= value;
                     }
 
                     return result;
                 };
+
+        public override string ToFormat() => expressionFormatVisitor.Visit(this);
     }
 }

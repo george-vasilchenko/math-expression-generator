@@ -6,6 +6,5 @@
         Subtraction = 1,
         Multiplication = 2,
         Division = 3,
-        Equality = 4
     }
 }

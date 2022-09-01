@@ -1,8 +1,8 @@
 ﻿namespace Meg.Ui.Expressions
 {
-    public abstract class OperationExpression<TInput, TResult> : Expression<TResult>
+    public abstract class OperationExpression<TInput, TResult> : NumericExpression
     {
-        protected OperationExpression(OperationType operationType, params Expression<TInput>[] expressions)
+        protected OperationExpression(OperationType operationType, params NumericExpression[] expressions)
         {
             if (expressions.Length < 2)
             {
@@ -13,7 +13,7 @@
             Expressions = expressions;
         }
 
-        public Expression<TInput>[] Expressions { get; }
+        public NumericExpression[] Expressions { get; }
 
         public OperationType OperationType { get; }
     }

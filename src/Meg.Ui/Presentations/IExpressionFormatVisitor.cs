@@ -4,6 +4,6 @@ namespace Meg.Ui.Presentations
 {
     public interface IExpressionFormatVisitor
     {
-        string Visit<TResult>(Expression<TResult> expression);
+        string Visit<TResult>(ComputationExpression<TResult> expression);
     }
 }

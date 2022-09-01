@@ -4,27 +4,33 @@ namespace Meg.Ui.Expressions
 {
     public class Multiplication : OperationExpression<double, double>
     {
-        private readonly IExpressionFormatVisitor expressionFormatVisitor;
+        private readonly IExpressionFormatVisitor visitor;
 
-        public Multiplication(IExpressionFormatVisitor expressionFormatVisitor, params Expression<double>[] expressions) : base(OperationType.Multiplication, expressions)
+        private Multiplication(IExpressionFormatVisitor visitor, params NumericExpression[] expressions)
+            : base(OperationType.Multiplication, expressions)
         {
-            this.expressionFormatVisitor = expressionFormatVisitor;
+            this.visitor = visitor;
         }
 
-        public override Func<double> ToResultFunc() => () =>
+        public static Multiplication New(IExpressionFormatVisitor visitor, params NumericExpression[] expressions)
         {
-            var result = Expressions[0].ToResultFunc().Invoke();
+            return new Multiplication(visitor, expressions);
+        }
 
-            for (var i = 1; i < Expressions.Length; i++)
-            {
-                var exp = Expressions[i];
-                var value = exp.ToResultFunc().Invoke();
-                result *= value;
-            }
+        public override Func<double> GetComputationFunc() => () =>
+                {
+                    var result = Expressions[0].Compute();
 
-            return result;
-        };
+                    for (var i = 1; i < Expressions.Length; i++)
+                    {
+                        var exp = Expressions[i];
+                        var value = exp.Compute();
+                        result *= value;
+                    }
 
-        public override string ToFormat() => expressionFormatVisitor.Visit(this);
+                    return result;
+                };
+
+        public override string ToFormat() => visitor.Visit(this);
     }
 }
