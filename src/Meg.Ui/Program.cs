@@ -1,6 +1,6 @@
-﻿using Meg.Ui.Exercises.Sheets;
-using Meg.Ui.Extensions;
-using Meg.Ui.Presentations.Latex;
+﻿using Meg.Core.Exercises.Sheets;
+using Meg.Core.Extensions;
+using Meg.Core.Presentations.Latex;
 
 namespace Meg.Ui
 {

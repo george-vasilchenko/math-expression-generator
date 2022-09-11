@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Meg.Ui", "src\Meg.Ui\Meg.Ui
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{611936FD-413F-4148-9240-ED0D0DD3130F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meg.Core", "src\Meg.Core\Meg.Core.csproj", "{93F83F7C-ED56-4067-8C7E-F6F85751C422}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +19,17 @@ Global
 		{BB875597-34F0-4689-9A4F-0789197C6DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB875597-34F0-4689-9A4F-0789197C6DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB875597-34F0-4689-9A4F-0789197C6DF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93F83F7C-ED56-4067-8C7E-F6F85751C422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93F83F7C-ED56-4067-8C7E-F6F85751C422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93F83F7C-ED56-4067-8C7E-F6F85751C422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93F83F7C-ED56-4067-8C7E-F6F85751C422}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BB875597-34F0-4689-9A4F-0789197C6DF5} = {611936FD-413F-4148-9240-ED0D0DD3130F}
+		{93F83F7C-ED56-4067-8C7E-F6F85751C422} = {611936FD-413F-4148-9240-ED0D0DD3130F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {74302200-CED1-47FF-9EAB-A189096D6CA9}
