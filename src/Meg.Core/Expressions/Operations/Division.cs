@@ -6,7 +6,7 @@ namespace Meg.Core.Expressions.Operations
     {
         private readonly IExpressionFormatVisitor expressionFormatVisitor;
 
-        private Division(IExpressionFormatVisitor expressionFormatVisitor, bool hasParenthesis, params NumericExpression[] expressions)
+        public Division(IExpressionFormatVisitor expressionFormatVisitor, bool hasParenthesis, params NumericExpression[] expressions)
             : base(OperationType.Division, expressions)
         {
             if (expressions is null)
@@ -19,7 +19,7 @@ namespace Meg.Core.Expressions.Operations
             IsFraction = false;
         }
 
-        private Division(IExpressionFormatVisitor expressionFormatVisitor, bool hasParenthesis, NumericExpression numerator, NumericExpression denominator)
+        public Division(IExpressionFormatVisitor expressionFormatVisitor, bool hasParenthesis, NumericExpression numerator, NumericExpression denominator)
             : base(OperationType.Division, numerator, denominator)
         {
             if (numerator is null)
@@ -39,26 +39,6 @@ namespace Meg.Core.Expressions.Operations
 
         public bool HasParenthesis { get; } = false;
         public bool IsFraction { get; } = false;
-
-        public static Division NewFraction(IExpressionFormatVisitor expressionFormatVisitor, NumericExpression numerator, NumericExpression denominator)
-        {
-            return new Division(expressionFormatVisitor, false, numerator, denominator);
-        }
-
-        public static Division NewFractionWithParenthesis(IExpressionFormatVisitor expressionFormatVisitor, NumericExpression numerator, NumericExpression denominator)
-        {
-            return new Division(expressionFormatVisitor, true, numerator, denominator);
-        }
-
-        public static Division NewInline(IExpressionFormatVisitor expressionFormatVisitor, params NumericExpression[] expressions)
-        {
-            return new Division(expressionFormatVisitor, false, expressions);
-        }
-
-        public static Division NewInlineWithParenthesis(IExpressionFormatVisitor expressionFormatVisitor, params NumericExpression[] expressions)
-        {
-            return new Division(expressionFormatVisitor, true, expressions);
-        }
 
         public override double Compute()
         {

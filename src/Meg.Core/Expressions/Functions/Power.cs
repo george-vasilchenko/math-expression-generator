@@ -6,7 +6,7 @@ namespace Meg.Core.Expressions.Functions
     {
         private readonly IExpressionFormatVisitor visitor;
 
-        private Power(IExpressionFormatVisitor visitor, NumericExpression argumentExpression, NumericExpression powerExpression)
+        public Power(IExpressionFormatVisitor visitor, NumericExpression argumentExpression, NumericExpression powerExpression)
             : base(FunctionType.Power, argumentExpression)
         {
             this.visitor = visitor;
@@ -14,9 +14,6 @@ namespace Meg.Core.Expressions.Functions
         }
 
         public NumericExpression PowerExpression { get; }
-
-        public static Power New(IExpressionFormatVisitor visitor, NumericExpression argumentExpression, NumericExpression powerExpression)
-                    => new(visitor, argumentExpression, powerExpression);
 
         public override double Compute()
         {

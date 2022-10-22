@@ -6,16 +6,8 @@ namespace Meg.Core.Expressions.Operations
     {
         private readonly IExpressionFormatVisitor visitor;
 
-        private Multiplication(IExpressionFormatVisitor visitor, params NumericExpression[] expressions)
-            : base(OperationType.Multiplication, expressions)
-        {
-            this.visitor = visitor;
-        }
-
-        public static Multiplication New(IExpressionFormatVisitor visitor, params NumericExpression[] expressions)
-        {
-            return new Multiplication(visitor, expressions);
-        }
+        public Multiplication(IExpressionFormatVisitor visitor, params NumericExpression[] expressions)
+            : base(OperationType.Multiplication, expressions) => this.visitor = visitor;
 
         public override double Compute()
         {

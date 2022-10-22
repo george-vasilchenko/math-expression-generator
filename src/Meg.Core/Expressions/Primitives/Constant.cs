@@ -2,7 +2,7 @@
 {
     public class Constant : NumericExpression
     {
-        private Constant(double value, string unknown)
+        public Constant(double value, string unknown)
         {
             if (string.IsNullOrWhiteSpace(unknown))
             {
@@ -14,7 +14,7 @@
             IsUnknown = true;
         }
 
-        private Constant(double value)
+        public Constant(double value)
         {
             Value = value;
             Unknown = null;
@@ -25,12 +25,6 @@
 
         public string? Unknown { get; }
         public double Value { get; }
-
-        public static Constant FromExpression(ComputationExpression<double> expression) => new(expression.Compute());
-
-        public static Constant New(double value) => new(value);
-
-        public static Constant NewAsUnknown(double value, string unknown) => new(value, unknown);
 
         public override double Compute() => Value;
 

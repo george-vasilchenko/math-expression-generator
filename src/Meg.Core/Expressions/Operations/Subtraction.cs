@@ -6,7 +6,7 @@ namespace Meg.Core.Expressions.Operations
     {
         private readonly IExpressionFormatVisitor expressionFormatVisitor;
 
-        private Subtraction(IExpressionFormatVisitor expressionFormatVisitor, bool hasParenthesis, params NumericExpression[] expressions)
+        public Subtraction(IExpressionFormatVisitor expressionFormatVisitor, bool hasParenthesis, params NumericExpression[] expressions)
             : base(OperationType.Subtraction, expressions)
         {
             this.expressionFormatVisitor = expressionFormatVisitor;
@@ -14,16 +14,6 @@ namespace Meg.Core.Expressions.Operations
         }
 
         public bool HasParenthesis { get; } = false;
-
-        public static Subtraction New(IExpressionFormatVisitor expressionFormatVisitor, params NumericExpression[] expressions)
-        {
-            return new Subtraction(expressionFormatVisitor, false, expressions);
-        }
-
-        public static Subtraction NewWithParenthesis(IExpressionFormatVisitor expressionFormatVisitor, params NumericExpression[] expressions)
-        {
-            return new Subtraction(expressionFormatVisitor, true, expressions);
-        }
 
         public override double Compute()
         {
